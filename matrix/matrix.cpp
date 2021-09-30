@@ -11,7 +11,7 @@
 constexpr const char* fileMatrixA = "matrixA.txt";
 constexpr const char* fileMatrixB = "matrixB.txt";
 
-using elem = int;
+using elem = long;
 using matrix = std::vector<std::vector<elem>>;
 
 class Pos {
@@ -95,7 +95,7 @@ void printMatrix(const matrix& C) {
     // empty processed correctly
     for (auto r = 0; r < C.size(); ++r) {
         for (auto c = 0; c < C[0].size(); ++c) {
-            std::cout << std::setw(5) << C[r][c];
+            std::cout << std::setw(8) << C[r][c];
         }
         std::cout << std::endl;
     }
@@ -107,8 +107,11 @@ int main() {
     matrix A = readMatrix(fileMatrixA);
     matrix B = readMatrix(fileMatrixB);
 
+    std::cout << "Matrix A:" << std::endl;
     printMatrix(A);
+    std::cout << "Matrix B:" << std::endl;
     printMatrix(B);
+
     const auto widthA = A[0].size();
     const auto heightA = A.size();
     if (widthA != B.size()) {
@@ -127,6 +130,7 @@ int main() {
         C[r].push_back(compute(Pos(r, c), A, B));
     }
 
+    std::cout << "Matrix C = AxB:" << std::endl;
     printMatrix(C);
 
     return 0;
