@@ -65,3 +65,6 @@ int main(int argc, char* argv[]) {
 }
 
 // we can't use shared(...) with #pragma omp for
+
+// 101 (25, 4t): 25(0), 25(1), 25(2), 25(3), 1(0)
+// 10^-308 
