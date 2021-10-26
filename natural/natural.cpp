@@ -59,19 +59,18 @@ int main(int argc, char** argv) {
     std::vector<bool> prime(N, undefined);
     init_omp(threads);
 
-    #pragma omp parallel //shared(prime)
+    #pragma omp parallel shared(prime)
     {
         num start_num = omp_get_thread_num() + 2;
-        getchar();
         bool end = false;
         while(!end) {
             //std::cerr << start_num << std::endl;
             for (auto i = 2*start_num; i <= prime.size(); i += start_num) {
                 prime[i - 1] = excluded;
             }
-            (start_num >= prime.size())? end = true : ++start_num;
+            (start_num >= prime.size())? end = true : start_num += omp_get_max_threads();
             while (start_num < prime.size() && prime[start_num - 1] == excluded) {
-                ++start_num;
+                start_num += omp_get_max_threads();
             }
         }
     }
