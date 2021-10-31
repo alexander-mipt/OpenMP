@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
 	{
 		#pragma omp single nowait 
 		{
-			quick_sort(0, arr2, N);
+			pqsort(arr2, 0, N-1);
 		} // #pragma omp single
 	} // #pragma omp parallel
   dt = omp_get_wtime() - dt;

@@ -1,0 +1,28 @@
+12,13d11
+< // #include <assert.h>
+< 
+26c24,27
+<     #pragma omp parallel shared(a,b,c,chunk) private(i, tid)
+---
+>     #pragma omp parallel for    \
+>         shared(a, b, c, chunk)  \
+>         private(i, tid)         \
+>         schedule(static, chunk)
+28,29c29
+<         // tid = omp_get_thread_num();
+<         #pragma omp parallel for schedule(static, chunk)
+---
+>         tid = omp_get_thread_num();
+32,33d31
+<             // assert(tid == omp_get_thread_num());
+<             tid = omp_get_thread_num();
+37c35
+<     } // omp parallel
+---
+>     }
+39,43d36
+< 
+< /*
+<  * add omp parallel
+<  * exclude tide after omp parallel for
+<  */ 
