@@ -75,10 +75,13 @@ int main(int argc, char** argv) {
         }
     }
 
+    uint64_t count = 0;
     for (num i = 1; i <= prime.size(); ++i) {
         if (prime[i - 1] != excluded) {
             std::cout << i << "\n";
+            count++;
         }
     }
+    std::cout << "total:" << count << std::endl;
 
 }

@@ -10,7 +10,7 @@
 
 int main(int argc, char **argv)
 {
-    float total;
+    double total = 0.0;
 
     #pragma omp parallel shared(total)// private(total) //by default
     {
@@ -24,19 +24,18 @@ int main(int argc, char **argv)
 
         #pragma omp barrier
 
-        total = 0.0;
         #pragma omp for schedule(dynamic, 10) reduction(+: total)
-        for (int i = 0; i < 20; i++) {
-            printf("%d, %d, %e\n", omp_get_thread_num(), i, total); 
+        for (int i = 0; i < 1000000; i++) {
             total = total + i*1.0;
         }
 
-        printf ("Thread %d is done! Total= %e\n", omp_get_thread_num(), total);
+        // printf ("Thread %d is done! Total= %e\n", omp_get_thread_num(), total);
     }
 
-    printf ("Thread %d is done! Total= %e\n", omp_get_thread_num(), total);
+    printf ("Thread %d is done! Total= %le\n", omp_get_thread_num(), total);
 }
 
 /*
  * tid is replaced to omp_get_thread_num()
+ * added reduction
  */

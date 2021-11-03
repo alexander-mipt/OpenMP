@@ -16,12 +16,16 @@ Repo contains directories, each is a single project.
 6. `teylor` `*`
 7. ~~`pqsort`~~ (is in progress)
 8. ~~`termoconduction`~~
+9. `bugs`
+10. ~~`diff_eq`~~
 
 ## how to build
-In main dir run `run.sh`.
+In main dir run `build.sh`.
 
 ## how to run
 Each dir contains `a.out` file or script with `--help` flag and `Readme.md` with examples.
+
+Or `run.sh` can be used
 
 ## Q&A
 samik.mechanic@gmail.com

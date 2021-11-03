@@ -51,18 +51,17 @@ int main (int argc, char **argv)
             }
         }
 
-        // #pragma omp barrier
+        // #pragma omp barrier (exist by default)
         printf("Thread %d exiting...\n",tid);
     }
 }
 
 void print_results(float array[N], int tid, int section) 
 {
-    int i, j;
-
-    j = 1;
     #pragma omp critical
     {
+        int i, j;
+        j = 1;
         printf("\nThread %d did section %d. The results are:\n", tid, section);
         for (i = 0; i < N; i++)
         {
